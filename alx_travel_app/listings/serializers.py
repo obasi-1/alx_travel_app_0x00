@@ -2,21 +2,13 @@ from rest_framework import serializers
 from .models import Listing, Booking
 
 class ListingSerializer(serializers.ModelSerializer):
-    """
-    Serializer for the Listing model.
-    Converts Listing model instances to JSON format for API responses.
-    """
     class Meta:
         model = Listing
-        # '__all__' includes all fields from the Listing model automatically.
-        fields = '__all__'
+        fields = ['id', 'title', 'price_per_night', 'description', 'image_url', 'location', 'host', 'created_at', 'updated_at']
+        read_only_fields = ['id', 'location', 'host', 'created_at', 'updated_at']
 
 class BookingSerializer(serializers.ModelSerializer):
-    """
-    Serializer for the Booking model.
-    Converts Booking model instances to JSON format.
-    """
     class Meta:
         model = Booking
-        # Includes all fields from the Booking model.
-        fields = '__all__'
+        fields = ['id', 'start_date', 'end_date', 'total_price', 'status', 'guest', 'listing', 'created_at', 'updated_at']
+        read_only_fields = ['id', 'guest', 'listing','created_at', 'updated_at']
